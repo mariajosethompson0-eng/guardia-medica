@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Guardia Médica</title>
+</head>
+<body>
+
+    <header>
+        <h1>Gestión de Guardia Médica</h1>
+        <nav>
+            <ul>
+                <li><a href="#recepcion">Recepción de Pacientes</a></li>
+                <li><a href="#espera">Salas de Espera</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="recepcion">
+            <h2>Ingreso de Paciente</h2>
+            <form>
+                <label for="dni">DNI / Documento:</label>
+                <input type="text" id="dni" name="dni" required>
+
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="motivo">Motivo de Consulta:</label>
+                <textarea id="motivo" name="motivo" rows="3"></textarea>
+
+                <button type="submit">Registrar Ingreso</button>
+            </form>
+        </section>
+
+        <section id="espera">
+            <h2>Pacientes en Espera</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Paciente</th>
+                        <th>Motivo</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10:15</td>
+                        <td>Consulta General</td>
+                        <td>Dolor de cabeza</td>
+                        <td>En espera</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sistema Hospitalario - Guardia Médica</p>
+    </footer>
+
+</body>
+</html>
