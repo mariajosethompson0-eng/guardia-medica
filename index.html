@@ -2,58 +2,72 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Guardia Médica</title>
+    <meta name="description" content="Sistema web de gestión de guardia médica para el registro, recepción y administración de la lista de espera de pacientes.">
+    <title>Guardia Médica | Sistema de Gestión y Recepción de Pacientes</title>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Gestión de Guardia Médica</h1>
-        <nav>
-            <ul>
-                <li><a href="#recepcion">Recepción de Pacientes</a></li>
-                <li><a href="#espera">Salas de Espera</a></li>
-            </ul>
-        </nav>
+    <header class="header-principal">
+        <div class="contenedor-header">
+            <h1>Gestión de Guardia Médica</h1>
+            <nav class="nav-principal">
+                <ul>
+                    <li><a href="#recepcion">Recepción de Pacientes</a></li>
+                    <li><a href="#espera">Salas de Espera</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section id="recepcion">
+    <main class="contenedor-principal">
+        <section id="recepcion" class="seccion-ingreso">
             <h2>Ingreso de Paciente</h2>
-            <form>
-                <label for="dni">DNI / Documento:</label>
-                <input type="text" id="dni" name="dni" required>
+            <form class="formulario-ingreso">
+                <div class="campo-form">
+                    <label for="dni">DNI / Documento:</label>
+                    <input type="text" id="dni" name="dni" placeholder="Ingrese DNI" required>
+                </div>
 
-                <label for="nombre">Nombre Completo:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <div class="campo-form">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
+                </div>
 
-                <label for="motivo">Motivo de Consulta:</label>
-                <textarea id="motivo" name="motivo" rows="3"></textarea>
+                <div class="campo-form">
+                    <label for="motivo">Motivo de Consulta:</label>
+                    <textarea id="motivo" name="motivo" rows="3" placeholder="Describa brevemente el síntoma"></textarea>
+                </div>
 
-                <button type="submit">Registrar Ingreso</button>
+                <button type="submit" class="btn-guardar">Registrar Ingreso</button>
             </form>
         </section>
-
-        <section id="espera">
+        
+        <section id="espera" class="seccion-espera">
             <h2>Pacientes en Espera</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Hora</th>
-                        <th>Paciente</th>
-                        <th>Motivo</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>10:15</td>
-                        <td>Consulta General</td>
-                        <td>Dolor de cabeza</td>
-                        <td>En espera</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hora</th>
+                            <th>Paciente</th>
+                            <th>Motivo</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10:15</td>
+                            <td>Consulta General</td>
+                            <td>Dolor de cabeza</td>
+                            <td><span class="estado en-espera">En espera</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
