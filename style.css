@@ -1,8 +1,4 @@
-/* ============================================
-   1. VARIABLES CSS (:root y var)
-   ============================================ */
 :root {
-    /* Paleta Médica Profesional */
     --color-primario: #0d6efd;
     --color-primario-hover: #0b5ed7;
     --color-secundario: #0a3663;
@@ -11,24 +7,15 @@
     --color-texto: #212529;
     --color-texto-suave: #6c757d;
     --color-borde: #e9ecef;
-    
-    /* Tipografía */
     --fuente-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    
-    /* Espaciados */
-    --espaciado-sm: 0.5rem;   /* 8px */
-    --espaciado-md: 1rem;     /* 16px */
-    --espaciado-lg: 2rem;     /* 32px */
-
-    /* Bordes y Sombras Modernas */
+    --espaciado-sm: 0.5rem;
+    --espaciado-md: 1rem;
+    --espaciado-lg: 2rem;
     --radio-borde: 12px;
     --sombra-caja: 0 10px 25px rgba(0, 0, 0, 0.05);
     --sombra-hover: 0 14px 28px rgba(0, 0, 0, 0.09);
 }
 
-/* ============================================
-   2. RESET Y BOX MODEL
-   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -43,9 +30,6 @@ body {
     min-height: 100vh;
 }
 
-/* ============================================
-   3. FLEXBOX EN HEADER Y NAVEGACIÓN
-   ============================================ */
 header.header-principal {
     background: linear-gradient(135deg, var(--color-secundario), var(--color-primario));
     color: #ffffff;
@@ -88,9 +72,6 @@ nav.nav-principal a:hover {
     background: rgba(255, 255, 255, 0.15);
 }
 
-/* ============================================
-   4. CSS GRID EN EL CONTENEDOR PRINCIPAL
-   ============================================ */
 .contenedor-principal {
     width: 90%;
     max-width: 1200px;
@@ -100,7 +81,6 @@ nav.nav-principal a:hover {
     gap: var(--espaciado-lg);
 }
 
-/* Tarjetas y Contenedores */
 form.formulario-ingreso,
 .tabla-contenedor {
     background-color: var(--color-tarjeta);
@@ -124,7 +104,6 @@ h2 {
     border-bottom: 2px solid var(--color-borde);
 }
 
-/* Formularios */
 .campo-form {
     margin-bottom: var(--espaciado-md);
 }
@@ -178,7 +157,6 @@ h2 {
     transform: scale(0.98);
 }
 
-/* Tabla Estilizada */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -222,9 +200,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ============================================
-   5. MEDIA QUERIES (RESPONSIVE)
-   ============================================ */
 @media (min-width: 768px) {
     .contenedor-header {
         flex-direction: row;
