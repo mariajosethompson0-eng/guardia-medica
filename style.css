@@ -1,0 +1,243 @@
+/* ============================================
+   1. VARIABLES CSS (:root y var)
+   ============================================ */
+:root {
+    /* Paleta Médica Profesional */
+    --color-primario: #0d6efd;
+    --color-primario-hover: #0b5ed7;
+    --color-secundario: #0a3663;
+    --color-fondo: #f8f9fa;
+    --color-tarjeta: #ffffff;
+    --color-texto: #212529;
+    --color-texto-suave: #6c757d;
+    --color-borde: #e9ecef;
+    
+    /* Tipografía */
+    --fuente-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    
+    /* Espaciados */
+    --espaciado-sm: 0.5rem;   /* 8px */
+    --espaciado-md: 1rem;     /* 16px */
+    --espaciado-lg: 2rem;     /* 32px */
+
+    /* Bordes y Sombras Modernas */
+    --radio-borde: 12px;
+    --sombra-caja: 0 10px 25px rgba(0, 0, 0, 0.05);
+    --sombra-hover: 0 14px 28px rgba(0, 0, 0, 0.09);
+}
+
+/* ============================================
+   2. RESET Y BOX MODEL
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ============================================
+   3. FLEXBOX EN HEADER Y NAVEGACIÓN
+   ============================================ */
+header.header-principal {
+    background: linear-gradient(135deg, var(--color-secundario), var(--color-primario));
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(13, 110, 253, 0.15);
+}
+
+.contenedor-header {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--espaciado-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-md);
+}
+
+header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+nav.nav-principal ul {
+    list-style: none;
+    display: flex;
+    gap: var(--espaciado-md);
+}
+
+nav.nav-principal a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+nav.nav-principal a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   4. CSS GRID EN EL CONTENEDOR PRINCIPAL
+   ============================================ */
+.contenedor-principal {
+    width: 90%;
+    max-width: 1200px;
+    margin: var(--espaciado-lg) auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espaciado-lg);
+}
+
+/* Tarjetas y Contenedores */
+form.formulario-ingreso,
+.tabla-contenedor {
+    background-color: var(--color-tarjeta);
+    padding: var(--espaciado-lg);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-caja);
+    border: 1px solid var(--color-borde);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+form.formulario-ingreso:hover,
+.tabla-contenedor:hover {
+    box-shadow: var(--sombra-hover);
+}
+
+h2 {
+    font-size: 1.25rem;
+    color: var(--color-secundario);
+    margin-bottom: var(--espaciado-md);
+    padding-bottom: var(--espaciado-sm);
+    border-bottom: 2px solid var(--color-borde);
+}
+
+/* Formularios */
+.campo-form {
+    margin-bottom: var(--espaciado-md);
+}
+
+.campo-form label {
+    display: block;
+    margin-bottom: var(--espaciado-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-texto-suave);
+}
+
+.campo-form input,
+.campo-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+}
+
+.campo-form input:focus,
+.campo-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+}
+
+.btn-guardar {
+    background-color: var(--color-primario);
+    color: #ffffff;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-guardar:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.btn-guardar:active {
+    transform: scale(0.98);
+}
+
+/* Tabla Estilizada */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+th {
+    background-color: #f8f9fa;
+    color: var(--color-texto-suave);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    font-size: 0.95rem;
+}
+
+.estado.en-espera {
+    background-color: #fff3cd;
+    color: #664d03;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    display: inline-block;
+}
+
+footer {
+    text-align: center;
+    padding: var(--espaciado-md);
+    background-color: var(--color-secundario);
+    color: #ffffff;
+    margin-top: var(--espaciado-lg);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   5. MEDIA QUERIES (RESPONSIVE)
+   ============================================ */
+@media (min-width: 768px) {
+    .contenedor-header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .btn-guardar {
+        width: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contenedor-principal {
+        grid-template-columns: 1fr 1.8fr;
+    }
+}
