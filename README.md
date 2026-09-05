@@ -12,7 +12,7 @@ Aplicación web responsiva diseñada para la recepción, maquetación y administ
 * Git & GitHub (Control de versiones con Git Flow)
 
 ---
-##INFORMACIÓN 
+## INFORMACIÓN 
 ### 1. ¿Dónde utilizaron Flexbox?
 Se aplicó **Flexbox** en el encabezado (`header.header-principal .contenedor-header`) para alinear el título principal con el menú de navegación, y dentro de la lista de navegación (`nav.nav-principal ul`) para distribuir horizontalmente las secciones con espaciados homogéneos.
 
