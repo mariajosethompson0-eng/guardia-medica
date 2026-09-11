@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Defensa de Avances - TP2 Guardia Médica</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Encabezado */
+        .header-box {
+            border: 2px solid #0d6efd;
+            background-color: #f8f9fa;
+            padding: 12px 18px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .header-box h1 {
+            font-size: 14pt;
+            color: #0a3663;
+            margin: 0 0 4px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header-box h2 {
+            font-size: 10pt;
+            color: #6c757d;
+            margin: 0 0 12px 0;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .info-grid {
+            width: 100%;
+            border-collapse: collapse;
+            border-top: 1px solid #e9ecef;
+            padding-top: 8px;
+        }
+
+        .info-grid td {
+            padding: 4px 0;
+            font-size: 9.5pt;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #0a3663;
+            width: 15%;
+        }
+
+        .dots {
+            border-bottom: 1px dotted #adb5bd;
+            width: 35%;
+        }
+
+        /* Secciones */
+        .section-title {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #0a3663;
+            padding: 6px 10px;
+            margin-top: 16px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            page-break-after: avoid;
+        }
+
+        p {
+            margin: 0 0 8px 0;
+            text-align: justify;
+        }
+
+        ul {
+            margin: 0 0 10px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* Bloques de código */
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 4px solid #0d6efd;
+            padding: 8px 12px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 8.5pt;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 8px 0 12px 0;
+            border-radius: 4px;
+        }
+
+        .explicacion {
+            background-color: #e7f1ff;
+            border: 1px solid #b6d4fe;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            font-size: 9.5pt;
+        }
+
+        .explicacion strong {
+            color: #0a3663;
+        }
+
+        /* Control de salto de página */
+        .paso-block {
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-box">
+        <h1>Guía de Defensa - TP 2: Guardia Médica</h1>
+        <h2>Resumen de Avances y Explicación de Código para Presentación</h2>
+        
+        <table class="info-grid">
+            <tr>
+                <td class="label">Estudiante 1:</td>
+                <td class="dots"></td>
+                <td class="label" style="padding-left: 15px;">Legajo 1:</td>
+                <td class="dots"></td>
+            </tr>
+            <tr>
+                <td class="label">Estudiante 2:</td>
+                <td class="dots"></td>
+                <td class="label" style="padding-left: 15px;">Legajo 2:</td>
+                <td class="dots"></td>
+            </tr>
+            <tr>
+                <td class="label">Comisión:</td>
+                <td class="dots"></td>
+                <td class="label" style="padding-left: 15px;">Fecha:</td>
+                <td class="dots"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section-title">1. Resumen Ejecutivo y Justificación</div>
+    <p><strong>Evolución del Proyecto:</strong> Se tomó la estructura HTML inicial y se transformó en un prototipo web funcional y responsivo adaptado a un sistema de guardia médica.</p>
+    <p><strong>Justificación Técnica:</strong> Se implementó un archivo CSS externo centralizado con variables (:root), estructuras combinadas de Flexbox y CSS Grid, reglas media queries para adaptación móvil y 5 estrategias de SEO aplicadas directamente al marcado HTML.</p>
+
+    <div class="paso-block">
+        <div class="section-title">2. Paso 1: Estrategias de SEO en el HTML</div>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Sistema web de gestión de guardia médica..."&gt;
+    &lt;title&gt;Guardia Médica | Sistema de Gestión y Recepción de Pacientes&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</pre>
+
+        <div class="explicacion">
+            <strong>Explicación para la Defensa:</strong>
+            <ul>
+                <li><strong>lang="es" y charset="UTF-8":</strong> SEO/Accesibilidad. Define el idioma e interpretación universal de caracteres (acentos y ñ).</li>
+                <li><strong>meta viewport:</strong> SEO/Responsive. Controla la escala de visualización en smartphones.</li>
+                <li><strong>meta description:</strong> SEO. Aporta la descripción resumida que indexa y muestra Google en sus resultados.</li>
+                <li><strong>title optimizado:</strong> SEO. Incluye términos clave directos del negocio ("Guardia Médica", "Gestión").</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="paso-block">
+        <div class="section-title">3. Paso 2: Variables CSS y Reset Global</div>
+        <pre>:root {
+    --color-primario: #0d6efd;
+    --color-secundario: #0a3663;
+    --color-fondo: #f8f9fa;
+    --color-tarjeta: #ffffff;
+    --fuente-principal: 'Segoe UI', system-ui, sans-serif;
+    --espaciado-md: 1rem;
+    --radio-borde: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}</pre>
+
+        <div class="explicacion">
+            <strong>Explicación para la Defensa:</strong>
+            <ul>
+                <li><strong>:root y var():</strong> Centralización de estilos. Permite actualizar colores, espacios o tipografías en un solo lugar y repercutir en toda la app.</li>
+                <li><strong>box-sizing: border-box:</strong> Garantiza que bordes y rellenos (padding) no modifiquen el ancho real calculado para las cajas.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="paso-block">
+        <div class="section-title">4. Paso 3: Maquetación con Flexbox (Encabezado y Menú)</div>
+        <pre>.contenedor-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-md);
+}
+
+nav.nav-principal ul {
+    list-style: none;
+    display: flex;
+    gap: var(--espaciado-md);
+}</pre>
+
+        <div class="explicacion">
+            <strong>Explicación para la Defensa:</strong>
+            <ul>
+                <li><strong>Flexbox en Header:</strong> Organiza la distribución vertical/horizontal del título y la navegación.</li>
+                <li><strong>Flexbox en Menú:</strong> Dispone la lista no ordenada (`ul`) en una fila horizontal uniforme mediante `gap`.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="paso-block">
+        <div class="section-title">5. Paso 4: Maquetación con CSS Grid y Media Queries</div>
+        <pre>.contenedor-principal {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espaciado-lg);
+}
+
+@media (min-width: 1024px) {
+    .contenedor-principal {
+        grid-template-columns: 1fr 1.8fr;
+    }
+}</pre>
+
+        <div class="explicacion">
+            <strong>Explicación para la Defensa:</strong>
+            <ul>
+                <li><strong>CSS Grid Mobile-First:</strong> Define el área principal en 1 sola columna por defecto para pantallas de celular (`1fr`).</li>
+                <li><strong>Media Query (1024px):</strong> En pantallas de escritorio se reestructura a 2 columnas asimétricas (`1fr 1.8fr`), separando el formulario de la tabla.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="paso-block">
+        <div class="section-title">6. Paso 5: Flujo de Git y Control de Versiones</div>
+        <pre># Creación de rama de desarrollo
+git checkout dev
+git checkout -b feature/estilos-css
+
+# Guardado y limpieza de commits
+git add style.css
+git commit -m "refactor: remover comentarios de style.css para entrega limpia"
+
+# Fusión final en dev
+git checkout dev
+git merge feature/estilos-css
+git push origin dev</pre>
+
+        <div class="explicacion">
+            <strong>Explicación para la Defensa:</strong>
+            <ul>
+                <li>Se utilizó el flujo de trabajo sobre la rama `dev` mediante una rama auxiliar de características (`feature/estilos-css`), manteniendo organizada la rama principal `main` y utilizando prefijos de commits estandarizados (`feat:`, `refactor:`).</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
