@@ -1,3 +1,20 @@
+/* =========================================================
+   CÓDIGO CSS PURO DESARROLLADO EN EL TP2 (CONSERVADO/COMENTADO)
+   =========================================================
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.navbar {
+    background-color: #333;
+    color: white;
+}
+
+... (resto del código CSS del TP2) ...
+
+========================================================= */
 :root {
     --color-primario: #0d6efd;
     --color-primario-hover: #0b5ed7;
