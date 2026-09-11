@@ -14,8 +14,19 @@ Una plataforma web intuitiva, ágil y moderna diseñada para optimizar la atenci
 
 ---
 
-### 🚀 Guía de Inicio Rápido
+### 🛠️ Tecnologías Utilizadas
 
-1. **Iniciar el servidor:** Abre tu terminal en la carpeta del proyecto y ejecuta:
-   ```bash
-   python app.py
+* **Estructura y Lógica:** HTML5, JavaScript (ES6+ en cliente)
+* **Diseño y Componentes:** Bootstrap 5.3 & Bootstrap Icons
+* **Despliegue (Deploy):** Netlify
+
+---
+
+### 🚀 Despliegue y Ejecución
+
+1. **Acceso en línea:** Ingresa a la URL pública generada por Netlify.
+2. **Ejecución local:**
+   * Abre el archivo `index.html` en cualquier navegador web moderno.
+3. **Credenciales de acceso para personal:**
+   * **Usuario:** `admin`
+   * **Contraseña:** `admin123`
