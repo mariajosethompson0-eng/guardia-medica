@@ -1,42 +1,21 @@
-# Sistema de Gestión - Guardia Médica
+# 🏥 Sistema de Gestión — Guardia Médica
 
-## Integrantes
-* María José Thompson
-
-## Descripción Breve
-Aplicación web responsiva diseñada para la recepción, maquetación y administración de pacientes en salas de espera de guardia médica. Permite agilizar la toma de datos de ingreso y visualizar los turnos de atención.
-
-## Tecnologías Utilizadas
-* HTML5 (Estructura semántica)
-* CSS3 (Flexbox, CSS Grid, Variables CSS, Responsive Design)
-* Git & GitHub (Control de versiones con Git Flow)
-
----
-## INFORMACIÓN 
-### 1. ¿Dónde utilizaron Flexbox?
-Se aplicó **Flexbox** en el encabezado (`header.header-principal .contenedor-header`) para alinear el título principal con el menú de navegación, y dentro de la lista de navegación (`nav.nav-principal ul`) para distribuir horizontalmente las secciones con espaciados homogéneos.
-
-### 2. ¿Dónde utilizaron Grid?
-Se utilizó **CSS Grid** en el contenedor principal (`.contenedor-principal`). En pantallas grandes, establece una maquetación en dos columnas dinámicas (`grid-template-columns: 1fr 1.8fr`) separando el formulario de ingreso de pacientes a la izquierda y la tabla de espera a la derecha.
-
-### 3. ¿Qué variables CSS crearon?
-En el bloque `:root` se crearon variables para:
-* **Colores:** `--color-primario`, `--color-primario-hover`, `--color-secundario`, `--color-fondo`, `--color-tarjeta`, `--color-texto`, `--color-texto-suave` y `--color-borde`.
-* **Tipografía:** `--fuente-principal`.
-* **Espaciados:** `--espaciado-sm`, `--espaciado-md` y `--espaciado-lg`.
-* **Sombreados y Bordes:** `--radio-borde`, `--sombra-caja` y `--sombra-hover`.
-
-### 4. ¿Cómo implementaron el Responsive Design?
-Se utilizó un enfoque *Mobile-First* combinando unidades relativas (`rem`, `%`, `vh`) con dos puntos de interrupción mediante **Media Queries**:
-* `@media (min-width: 768px)`: Reorganiza el encabezado en fila y ajusta botones para tablets.
-* `@media (min-width: 1024px)`: Despliega la maqueta en 2 columnas con CSS Grid para pantallas de escritorio.
+Una plataforma web intuitiva, ágil y moderna diseñada para optimizar la atención en salas de emergencias médicas, organizar el flujo de pacientes en tiempo real y facilitar el trabajo diario del equipo de salud.
 
 ---
 
-## Estrategias de SEO Implementadas
+### ✨ ¿Qué hace esta aplicación?
 
-1. **Meta Description (`<meta name="description">`):** Describe el propósito del sitio para mejorar la indexación en motores de búsqueda.
-2. **Meta Viewport (`<meta name="viewport">`):** Garantiza la correcta renderización en dispositivos móviles, optimizando la experiencia mobile exigida por Google.
-3. **Etiqueta Title Optimizada (`<title>`):** Incorpora palabras clave relevantes del dominio ("Guardia Médica", "Gestión", "Recepción").
-4. **Estructura Semántica (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`):** Otorga jerarquía y legibilidad al código para los rastreadores (*crawlers*).
-5. **Atributos de accesibilidad (`lang="es"`, etiquetas `for` y `id`):** Facilita la navegación accesible e indexación del formulario.
+* 📋 **Admisión Ágil de Pacientes:** Registra nuevos ingresos en segundos con DNI, nombre y síntoma o motivo de consulta.
+* ⏱️ **Sala de Espera en Vivo:** Control visual del flujo de pacientes con seguimiento de estados (*En Espera*, *En Atención* y *Atendido*).
+* 🩺 **Gestión Médica Interactiva:** Botones de acción directa para llamar al paciente a la consulta, finalizar su atención o removerlo de la lista.
+* 🔐 **Acceso Seguro para el Personal:** Ventana de inicio de sesión (*Login*) para resguardar las funciones administrativas.
+* 👨‍⚕️ **Módulo de Médicos y Receta Remota:** Panel informativo con los profesionales de turno y un formulario interactivo para la solicitud express de medicamentos.
+
+---
+
+### 🚀 Guía de Inicio Rápido
+
+1. **Iniciar el servidor:** Abre tu terminal en la carpeta del proyecto y ejecuta:
+   ```bash
+   python app.py
