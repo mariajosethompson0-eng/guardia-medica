@@ -1,32 +1,42 @@
-# 🏥 Sistema de Gestión — Guardia Médica
+# 🏥 Sistema de Guardia Médica — Gestión de Emergencias
 
-Una plataforma web intuitiva, ágil y moderna diseñada para optimizar la atención en salas de emergencias médicas, organizar el flujo de pacientes en tiempo real y facilitar el trabajo diario del equipo de salud.
-
----
-
-### ✨ ¿Qué hace esta aplicación?
-
-* 📋 **Admisión Ágil de Pacientes:** Registra nuevos ingresos en segundos con DNI, nombre y síntoma o motivo de consulta.
-* ⏱️ **Sala de Espera en Vivo:** Control visual del flujo de pacientes con seguimiento de estados (*En Espera*, *En Atención* y *Atendido*).
-* 🩺 **Gestión Médica Interactiva:** Botones de acción directa para llamar al paciente a la consulta, finalizar su atención o removerlo de la lista.
-* 🔐 **Acceso Seguro para el Personal:** Ventana de inicio de sesión (*Login*) para resguardar las funciones administrativas.
-* 👨‍⚕️ **Módulo de Médicos y Receta Remota:** Panel informativo con los profesionales de turno y un formulario interactivo para la solicitud express de medicamentos.
+Aplicación web enfocada en la digitalización y administración del área de recepción y gestión de pacientes en un centro de salud. Permite registrar ingresos y monitorear el flujo de la sala de espera en tiempo real desde el navegador.
 
 ---
 
-### 🛠️ Tecnologías Utilizadas
+## 🎓 Información Académica
+* **Institución:** Universidad Tecnológica Nacional (UTN)
+* **Alumna:** María José Thompson
+* **Legajo:** 61026
+* **Modalidad:** Proyecto Individual
 
-* **Estructura y Lógica:** HTML5, JavaScript (ES6+ en cliente)
-* **Diseño y Componentes:** Bootstrap 5.3 & Bootstrap Icons
+---
+
+## ⚡ Funcionalidades Principales
+
+* 📋 **Admisión de Pacientes:** Formulario dinámico para capturar DNI, nombre y motivo de consulta.
+* ⏱️ **Sala de Espera en Vivo:** Control visual del flujo de pacientes (*En Espera*, *En Atención*, *Atendido*).
+* 🩺 **Gestión Médica Interactiva:** Botones en JS para llamar a consulta, finalizar atención o eliminar registros.
+* 🔐 **Acceso de Personal:** Ventana modal de inicio de sesión para el equipo administrativo.
+* 👨‍⚕️ **Médicos y Receta Remota:** Listado de profesionales de turno y solicitud express de medicamentos.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+* **Estructura y Lógica:** HTML5 Semántico & JavaScript (ES6+)
+* **Diseño y Estilos:** Bootstrap 5.3 & Bootstrap Icons (Responsive)
+* **Control de Versiones:** Git & GitHub (Flujo de ramas `main`, `dev`, `feature/*`)
 * **Despliegue (Deploy):** Netlify
 
 ---
 
-### 🚀 Despliegue y Ejecución
+## 📁 Estructura del Proyecto
 
-1. **Acceso en línea:** Ingresa a la URL pública generada por Netlify.
-2. **Ejecución local:**
-   * Abre el archivo `index.html` en cualquier navegador web moderno.
-3. **Credenciales de acceso para personal:**
-   * **Usuario:** `admin`
-   * **Contraseña:** `admin123`
+```text
+├── index.html              # Estructura principal y maquetación semántica
+├── css/
+│   └── styles.css          # Estilos personalizados y ajustes visuales
+├── js/
+│   └── main.js            # Manipulación del DOM, eventos e interactividad
+└── README.md               # Documentación del repositorio
