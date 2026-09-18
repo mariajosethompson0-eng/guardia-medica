@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formIngreso = document.getElementById('formIngreso');
     const formLogin = document.getElementById('formLogin');
+    const formRegistro = document.getElementById('formRegistro');
+    const formReceta = document.getElementById('formReceta');
 
     if (formIngreso) {
         formIngreso.addEventListener('submit', agregarPaciente);
@@ -8,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (formLogin) {
         formLogin.addEventListener('submit', iniciarSesion);
+    }
+
+    if (formRegistro) {
+        formRegistro.addEventListener('submit', registrarMedico);
+    }
+
+    if (formReceta) {
+        formReceta.addEventListener('submit', emitirReceta);
     }
 
     asociarEventosBotonesExistentes();
@@ -105,11 +115,39 @@ function iniciarSesion(event) {
     const pass = document.getElementById('password').value.trim();
 
     if (usuario === 'admin' && pass === 'admin123') {
-        alert('¡Bienvenido al sistema de guardia!');
-        const modalElement = document.getElementById('loginModal');
-        const modal = bootstrap.Modal.getInstance(modalElement);
-        if (modal) modal.hide();
+        alert('¡Bienvenido al sistema, Dr. Administrador!');
+        ocultarModalLogin();
     } else {
-        alert('Credenciales incorrectas. Intente con admin / admin123');
+        alert('Credenciales incorrectas. Intente con usuario: admin / contraseña: admin123');
     }
+}
+
+function registrarMedico(event) {
+    event.preventDefault();
+    const nombre = document.getElementById('regNombre').value.trim();
+    const matricula = document.getElementById('regMatricula').value.trim();
+
+    if (nombre && matricula) {
+        alert(`¡Registro exitoso! Cuenta médica creada para ${nombre} (${matricula}). Ya puede iniciar sesión.`);
+        document.getElementById('formRegistro').reset();
+        ocultarModalLogin();
+    }
+}
+
+function emitirReceta(event) {
+    event.preventDefault();
+    const paciente = document.getElementById('pacienteReceta').value.trim();
+    const medicamento = document.getElementById('medicamento').value.trim();
+    const medico = document.getElementById('medicoFirma').value;
+
+    if (paciente && medicamento && medico) {
+        alert(` Receta Digital Emitida con Éxito\n\nPaciente: ${paciente}\nMedicamento: ${medicamento}\nFirmado por: ${medico}\nDocumento enviado por vía remota.`);
+        document.getElementById('formReceta').reset();
+    }
+}
+
+function ocultarModalLogin() {
+    const modalElement = document.getElementById('loginModal');
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    if (modal) modal.hide();
 }
