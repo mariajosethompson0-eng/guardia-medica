@@ -3,44 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Guardia Médica</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Sistema de Guardia Médica | Recepción y Lista de Espera</title>
+    <meta name="description" content="Sistema web para la recepción de pacientes y gestión en tiempo real de salas de espera en guardia médica.">
+    <meta name="keywords" content="guardia médica, recepción de pacientes, emergencias, sala de espera">
+    <meta name="author" content="María José Thompson">
+    <meta name="robots" content="index, follow">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <style>
-        .hero-bg {
-            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-        }
-        .card-hover {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="bg-light d-flex flex-column min-vh-100">
 
-    <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-dark hero-bg shadow-sm">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
             <div class="container">
-                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
-                    <i class="bi bi-hospital fs-3"></i> Guardia Médica
+                <a class="navbar-brand fw-bold" href="#">
+                    <i class="bi bi-hospital me-2"></i>Gestión de Guardia Médica
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Navegación principal">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto gap-2 align-items-center">
-                        <li class="nav-item"><a class="nav-link active" href="#recepcion"><i class="bi bi-person-plus"></i> Recepción</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#espera"><i class="bi bi-clock-history"></i> Sala de Espera</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#medicos"><i class="bi bi-person-badge"></i> Médicos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#receta-remota"><i class="bi bi-file-earmark-medical"></i> Receta Remota</a></li>
-                        <li class="nav-item ms-lg-2" id="navAuth">
-                            <button type="button" class="btn btn-light btn-sm fw-bold text-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#recepcion">Recepción</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#espera">Sala de Espera</a>
+                        </li>
+                        <li class="nav-item ms-lg-2">
+                            <button class="btn btn-outline-light btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                <i class="bi bi-person-lock me-1"></i>Ingreso Personal
                             </button>
                         </li>
                     </ul>
@@ -50,281 +44,121 @@
     </header>
 
     <main class="container my-5 flex-grow-1">
-
-        <div id="alertContainer"></div>
-
-        <div class="row g-4 mb-5">
-            <section id="recepcion" class="col-12 col-lg-4">
-                <div class="card shadow-sm border-0 h-100 card-hover">
-                    <div class="card-header bg-white border-0 pt-4 px-4 d-flex justify-content-between align-items-center">
-                        <h2 class="h5 card-title text-primary fw-bold mb-0"><i class="bi bi-clipboard-plus"></i> Ingreso de Paciente</h2>
-                        <span class="badge bg-primary-subtle text-primary fw-normal">Admisión</span>
+        <div class="row g-4">
+            
+            <section id="recepcion" class="col-12 col-lg-5">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h2 class="h4 card-title text-primary fw-bold mb-0">
+                            <i class="bi bi-person-plus me-2"></i>Ingreso de Paciente
+                        </h2>
                     </div>
                     <div class="card-body p-4">
-                        <form id="formIngreso" onsubmit="registrarPaciente(event)">
+                        <form id="formIngreso">
                             <div class="mb-3">
                                 <label for="dni" class="form-label fw-semibold">DNI / Documento:</label>
-                                <input type="text" class="form-control" id="dni" placeholder="Ingrese número de documento" required>
+                                <input type="text" class="form-control" id="dni" name="dni" placeholder="Ingrese número de documento" required>
                             </div>
+
                             <div class="mb-3">
                                 <label for="nombre" class="form-label fw-semibold">Nombre Completo:</label>
-                                <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre y apellido" required>
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese nombre y apellido" required>
                             </div>
+
                             <div class="mb-3">
                                 <label for="motivo" class="form-label fw-semibold">Motivo de Consulta:</label>
-                                <textarea class="form-control" id="motivo" rows="3" placeholder="Describa el síntoma o motivo..." required></textarea>
+                                <textarea class="form-control" id="motivo" name="motivo" rows="3" placeholder="Describa los síntomas o causa..." required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100 fw-bold py-2 shadow-sm">
-                                <i class="bi bi-check-circle"></i> Registrar Ingreso
+
+                            <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                                <i class="bi bi-check-circle me-1"></i>Registrar Ingreso
                             </button>
                         </form>
                     </div>
                 </div>
             </section>
 
-            <section id="espera" class="col-12 col-lg-8">
-                <div class="card shadow-sm border-0 h-100 card-hover">
+            <section id="espera" class="col-12 col-lg-7">
+                <div class="card shadow-sm border-0 h-100">
                     <div class="card-header bg-white border-0 pt-4 px-4 d-flex justify-content-between align-items-center">
-                        <h2 class="h5 card-title text-primary fw-bold mb-0"><i class="bi bi-people"></i> Pacientes en Espera</h2>
-                        <span class="badge bg-warning text-dark"><i class="bi bi-dot"></i> En Vivo</span>
+                        <h2 class="h4 card-title text-primary fw-bold mb-0">
+                            <i class="bi bi-clock-history me-2"></i>Pacientes en Espera
+                        </h2>
+                        <span class="badge bg-primary rounded-pill" id="contadorPacientes">1 paciente</span>
                     </div>
                     <div class="card-body p-4">
                         <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0">
+                            <table class="table table-hover align-middle mb-0" id="tablaEspera">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Hora</th>
-                                        <th>Paciente</th>
-                                        <th>Motivo</th>
-                                        <th>Estado</th>
-                                        <th class="text-center">Acciones</th>
+                                        <th scope="col">Hora</th>
+                                        <th scope="col">Paciente</th>
+                                        <th scope="col">Motivo</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col" class="text-end">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tablaPacientes">
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold text-secondary">10:15</td>
+                                        <td>
+                                            <strong>Juan Pérez</strong><br>
+                                            <small class="text-muted">DNI: 12345678</small>
+                                        </td>
+                                        <td>Dolor abdominal persistente</td>
+                                        <td><span class="badge bg-warning text-dark">En espera</span></td>
+                                        <td class="text-end">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <button type="button" class="btn btn-outline-primary btn-atender" title="Llamar a consulta">
+                                                    <i class="bi bi-telephone-out"></i> Atender
+                                                </button>
+                                                <button type="button" class="btn btn-outline-danger btn-eliminar" title="Cancelar turno">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </section>
+
         </div>
-
-        <section id="medicos" class="mb-5">
-            <h2 class="h4 text-primary fw-bold mb-4"><i class="bi bi-person-badge"></i> Médicos de Turno</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm card-hover h-100 text-center p-3">
-                        <div class="card-body">
-                            <i class="bi bi-person-circle fs-1 text-primary mb-2"></i>
-                            <h5 class="card-title fw-bold">Dr. Carlos Gómez</h5>
-                            <p class="text-muted mb-1">Clínica Médica</p>
-                            <span class="badge bg-success">Disponible</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm card-hover h-100 text-center p-3">
-                        <div class="card-body">
-                            <i class="bi bi-person-circle fs-1 text-primary mb-2"></i>
-                            <h5 class="card-title fw-bold">Dra. María Fernández</h5>
-                            <p class="text-muted mb-1">Pediatría</p>
-                            <span class="badge bg-success">Disponible</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm card-hover h-100 text-center p-3">
-                        <div class="card-body">
-                            <i class="bi bi-person-circle fs-1 text-primary mb-2"></i>
-                            <h5 class="card-title fw-bold">Dr. Roberto Martínez</h5>
-                            <p class="text-muted mb-1">Traumatología</p>
-                            <span class="badge bg-warning text-dark">En Guardia Externa</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="receta-remota" class="mb-5">
-            <div class="card shadow-sm border-0 card-hover">
-                <div class="card-header bg-white border-0 pt-4 px-4">
-                    <h2 class="h5 card-title text-primary fw-bold mb-0"><i class="bi bi-file-earmark-medical"></i> Solicitud de Receta Remota</h2>
-                </div>
-                <div class="card-body p-4">
-                    <form id="formReceta" onsubmit="generarReceta(event)">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="recetaNombre" class="form-label fw-semibold">Nombre del Paciente:</label>
-                                <input type="text" class="form-control" id="recetaNombre" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="recetaMedicamento" class="form-label fw-semibold">Medicamento Solicitado:</label>
-                                <input type="text" class="form-control" id="recetaMedicamento" required>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-outline-primary fw-bold">
-                                    <i class="bi bi-send"></i> Generar Solicitud de Receta
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <div id="recetaResultado" class="mt-3 d-none alert alert-success"></div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow">
-                <div class="modal-header hero-bg text-white border-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-lock-fill me-2"></i> Acceso Personal Médico</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" id="closeModalBtn"></button>
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title fw-bold" id="loginModalLabel"><i class="bi bi-shield-lock me-2"></i>Acceso Personal Médico</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form onsubmit="iniciarSesion(event)">
-                    <div class="modal-body p-4">
+                <div class="modal-body p-4">
+                    <form id="formLogin">
                         <div class="mb-3">
-                            <label for="username" class="form-label fw-semibold">Usuario:</label>
-                            <input type="text" class="form-control" id="username" placeholder="Ej: admin" required>
+                            <label for="usuario" class="form-label fw-semibold">Usuario:</label>
+                            <input type="text" class="form-control" id="usuario" placeholder="admin" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label fw-semibold">Contraseña:</label>
                             <input type="password" class="form-control" id="password" placeholder="••••••••" required>
                         </div>
-                        <p class="text-muted small mb-0"><i class="bi bi-info-circle"></i> Usuario por defecto: <strong>admin</strong> | Clave: <strong>admin123</strong></p>
-                    </div>
-                    <div class="modal-footer border-0 bg-light">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary fw-bold">Ingresar</button>
-                    </div>
-                </form>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">Iniciar Sesión</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
     <footer class="bg-dark text-white py-3 mt-auto">
         <div class="container text-center">
-            <p class="mb-0 text-muted">&copy; 2026 Sistema Hospitalario - Guardia Médica</p>
+            <p class="mb-0 text-muted">&copy; 2026 Sistema Hospitalario - Guardia Médica | Desarrollado por María José Thompson</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/bootstrap.bundle.min.js"></script>
-
-    <script>
-        let pacientes = [
-            { id: 1, hora: '14:30', nombre: 'Juan Pérez', dni: '38123456', motivo: 'Fiebre alta y dolor de garganta', estado: 'En Espera' },
-            { id: 2, hora: '14:15', nombre: 'María González', dni: '40987654', motivo: 'Control de presión arterial', estado: 'En Atención' }
-        ];
-
-        function renderizarTabla() {
-            const tbody = document.getElementById('tablaPacientes');
-            if (pacientes.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-4">No hay pacientes registrados actualmente.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = pacientes.map(p => {
-                let badgeClass = p.estado === 'En Espera' ? 'bg-warning text-dark' : (p.estado === 'En Atención' ? 'bg-info text-dark' : 'bg-success');
-                let acciones = '';
-
-                if (p.estado === 'En Espera') {
-                    acciones += `<button onclick="cambiarEstado(${p.id}, 'En Atención')" class="btn btn-outline-info btn-sm me-1"><i class="bi bi-play-fill"></i> Atender</button>`;
-                } else if (p.estado === 'En Atención') {
-                    acciones += `<button onclick="cambiarEstado(${p.id}, 'Atendido')" class="btn btn-outline-success btn-sm me-1"><i class="bi bi-check2-all"></i> Finalizar</button>`;
-                }
-
-                acciones += `<button onclick="eliminarPaciente(${p.id})" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>`;
-
-                return `
-                    <tr>
-                        <td class="fw-bold text-secondary">${p.hora}</td>
-                        <td><div class="fw-bold">${p.nombre}</div><small class="text-muted">DNI: ${p.dni}</small></td>
-                        <td>${p.motivo}</td>
-                        <td><span class="badge ${badgeClass}">${p.estado}</span></td>
-                        <td class="text-center">${acciones}</td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function registrarPaciente(e) {
-            e.preventDefault();
-            const dni = document.getElementById('dni').value;
-            const nombre = document.getElementById('nombre').value;
-            const motivo = document.getElementById('motivo').value;
-            const hora = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-            pacientes.unshift({ id: Date.now(), hora, nombre, dni, motivo, estado: 'En Espera' });
-            document.getElementById('formIngreso').reset();
-            renderizarTabla();
-            mostrarAlerta(`Paciente ${nombre} registrado con éxito en la sala de espera.`, 'success');
-        }
-
-        function cambiarEstado(id, nuevoEstado) {
-            const p = pacientes.find(item => item.id === id);
-            if (p) {
-                p.estado = nuevoEstado;
-                renderizarTabla();
-                mostrarAlerta(`Estado de ${p.nombre} cambiado a "${nuevoEstado}".`, 'info');
-            }
-        }
-
-        function eliminarPaciente(id) {
-            if (confirm('¿Seguro que deseas eliminar este paciente?')) {
-                pacientes = pacientes.filter(item => item.id !== id);
-                renderizarTabla();
-                mostrarAlerta('Paciente eliminado de la lista.', 'warning');
-            }
-        }
-
-        function iniciarSesion(e) {
-            e.preventDefault();
-            const u = document.getElementById('username').value;
-            const p = document.getElementById('password').value;
-
-            if (u === 'admin' && p === 'admin123') {
-                document.getElementById('closeModalBtn').click();
-                document.getElementById('navAuth').innerHTML = `
-                    <span class="badge bg-light text-primary me-2 py-2 px-3"><i class="bi bi-person-circle"></i> admin</span>
-                    <button onclick="cerrarSesion()" class="btn btn-outline-light btn-sm fw-bold">Cerrar Sesión</button>
-                `;
-                mostrarAlerta('Inicio de sesión exitoso.', 'success');
-            } else {
-                alert('Usuario o contraseña incorrectos');
-            }
-        }
-
-        function cerrarSesion() {
-            document.getElementById('navAuth').innerHTML = `
-                <button type="button" class="btn btn-light btn-sm fw-bold text-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
-                </button>
-            `;
-            mostrarAlerta('Sesión cerrada correctamente.', 'info');
-        }
-
-        function generarReceta(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('recetaNombre').value;
-            const med = document.getElementById('recetaMedicamento').value;
-            const res = document.getElementById('recetaResultado');
-            res.classList.remove('d-none');
-            res.innerHTML = `<i class="bi bi-check-circle-fill me-2"></i> Solicitud generada con éxito para <strong>${nombre}</strong> (Medicamento: <em>${med}</em>).`;
-            document.getElementById('formReceta').reset();
-        }
-
-        function mostrarAlerta(msg, type) {
-            const alertBox = document.getElementById('alertContainer');
-            alertBox.innerHTML = `
-                <div class="alert alert-${type} alert-dismissible fade show shadow-sm" role="alert">
-                    <i class="bi bi-info-circle-fill me-2"></i> ${msg}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            `;
-        }
-
-        renderizarTabla();
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
