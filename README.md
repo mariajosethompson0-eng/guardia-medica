@@ -1,4 +1,3 @@
-<!-- Modificacion de prueba para integracion de PR -->
 # 🏥 Sistema de Guardia Médica — Gestión de Emergencias
 
 Aplicación web interactiva para la digitalización, administración y monitoreo en tiempo real de la recepción de pacientes, sala de espera de emergencias y retribuciones de guardia[cite: 2].
