@@ -1,0 +1,168 @@
+/* ==========================================================================
+   GUARDIASAPP - MODO OSCURO NEÓN & PALETA ORIGINAL
+   ========================================================================== */
+
+:root {
+    --bg-black: #0b0c10;
+    --card-dark: #12141a;
+    --card-inner: #1a1d24;
+    --dark-input: #151821;
+    
+    --cyan-main: #00f2fe;
+    --cyan-dark: #00c6ff;
+    --emerald-btn: #0d9488;
+    --emerald-hover: #0f766e;
+    
+    --border-radius-pill: 50px;
+    --border-radius-card: 16px;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-black) !important;
+    color: #e2e8f0;
+}
+
+/* NAVEGACIÓN EN CÁPSULA FLOTANTE */
+.floating-nav-container {
+    position: sticky;
+    top: 12px;
+    z-index: 1030;
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+.floating-nav {
+    background: rgba(18, 20, 26, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: var(--border-radius-pill);
+    padding: 8px 20px;
+    border: 1px solid rgba(0, 242, 254, 0.25);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.floating-nav .nav-link {
+    color: #cbd5e1 !important;
+    font-weight: 600;
+    padding: 8px 16px !important;
+    border-radius: var(--border-radius-pill);
+    transition: all 0.3s ease;
+}
+
+.floating-nav .nav-link.active, 
+.floating-nav .nav-link:hover {
+    background-color: rgba(0, 242, 254, 0.15);
+    color: var(--cyan-main) !important;
+}
+
+/* BADGES MÈTRICAS */
+.badge-critico {
+    background-color: #ef4444;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.badge-espera {
+    background-color: #eab308;
+    color: #000000;
+    font-weight: 700;
+}
+
+.badge-medicos {
+    background-color: #10b981;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* BOTONES */
+.text-cyan {
+    color: var(--cyan-main) !important;
+}
+
+.btn-cyan {
+    background-color: var(--cyan-main);
+    color: #000000;
+    border: none;
+}
+
+.btn-cyan-fill {
+    background: linear-gradient(135deg, var(--cyan-main) 0%, var(--cyan-dark) 100%);
+    color: #000000;
+    border: none;
+}
+
+.btn-registrar-emerald {
+    background-color: var(--emerald-btn);
+    color: #ffffff;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 6px 16px rgba(13, 148, 136, 0.4);
+    transition: all 0.25s ease;
+}
+
+.btn-registrar-emerald:hover {
+    background-color: var(--emerald-hover);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ESTADO DEL SERVICIO */
+.card-status {
+    background-color: var(--card-dark) !important;
+    border: 1px solid rgba(0, 242, 254, 0.2) !important;
+}
+
+.card-status-box {
+    background-color: var(--card-inner);
+}
+
+/* PESTAÑAS */
+.custom-pills .nav-link {
+    color: #94a3b8;
+    border-radius: 12px;
+    padding: 10px 18px;
+    transition: all 0.25s ease;
+}
+
+.custom-pills .nav-link.active {
+    background-color: rgba(0, 242, 254, 0.18) !important;
+    color: var(--cyan-main) !important;
+}
+
+/* TARJETAS */
+.card-dark {
+    background-color: var(--card-dark) !important;
+    border-radius: var(--border-radius-card) !important;
+}
+
+.bg-dark-inner {
+    background-color: var(--card-inner) !important;
+}
+
+.bg-dark-input {
+    background-color: var(--dark-input) !important;
+}
+
+.card-doctor-active {
+    border-left: 4px solid #10b981 !important;
+}
+
+.card-doctor-descanso {
+    border-left: 4px solid #eab308 !important;
+}
+
+.fs-7 {
+    font-size: 0.78rem;
+}
+
+@media (min-width: 992px) {
+    .border-end-lg {
+        border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    .border-start-lg {
+        border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+}

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GuardiasApp | Plataforma Inteligente de Guardias y Triage</title>
+    <meta name="description" content="Plataforma Inteligente para el Control de Guardias y Triage. Administra la admisión de pacientes en tiempo real.">
+    <meta name="keywords" content="guardiasapp, triage, guardias medicas, sala de espera">
+    <meta name="author" content="María José Thompson">
+
+    <!-- Bootstrap 5.3 CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Hoja de Estilos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-light d-flex flex-column min-vh-100">
+
+    <!-- BARRA DE NAVEGACIÓN EN CÁPSULA FLOTANTE -->
+    <div class="floating-nav-container">
+        <nav class="navbar navbar-expand-lg floating-nav">
+            <div class="container-fluid px-2">
+                <a class="navbar-brand text-white fw-bold d-flex align-items-center gap-2 me-3" href="#">
+                    <i class="bi bi-shield-plus text-cyan fs-4"></i> GuardiasApp
+                </a>
+
+                <!-- Badges de Métricas Superiores -->
+                <div class="d-flex align-items-center gap-2 me-auto">
+                    <span class="badge badge-critico rounded-pill px-2.5 py-1">
+                        <i class="bi bi-exclamation-triangle-fill"></i> <span id="navCountRojo">1</span> Críticos
+                    </span>
+                    <span class="badge badge-espera rounded-pill px-2.5 py-1">
+                        <i class="bi bi-clock-fill"></i> <span id="navCountEspera">2</span> En Espera
+                    </span>
+                    <span class="badge badge-medicos rounded-pill px-2.5 py-1">
+                        <i class="bi bi-person-badge-fill"></i> <span id="navCountMedicos">2</span> Médicos
+                    </span>
+                </div>
+
+                <button class="navbar-toggler border-0 text-white shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navPill">
+                    <i class="bi bi-list fs-2"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navPill">
+                    <ul class="navbar-nav ms-auto gap-2 align-items-lg-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#sec-espera"><i class="bi bi-kanban"></i> Panel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sec-calculadora" onclick="activarTabCalculadora()"><i class="bi bi-calculator"></i> Retribuciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sec-medicos"><i class="bi bi-people"></i> Médicos</a>
+                        </li>
+                        <li class="nav-item ms-lg-2" id="navAuth">
+                            <button class="btn btn-cyan text-dark fw-bold rounded-pill px-3 py-1.5" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Acceso Personal
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="container my-3 flex-grow-1">
+
+        <!-- ALERTA GLOBAL -->
+        <div id="alertaGlobal" class="alert alert-dark-gm d-none mb-4 shadow" role="alert">
+            <i class="bi bi-check-circle-fill text-cyan fs-5 me-2"></i> <span id="alertaTexto"></span>
+        </div>
+
+        <!-- HERO Y CUADRO DE ESTADO DE SERVICIO -->
+        <div class="row align-items-center g-4 mb-5">
+            <div class="col-12 col-lg-7">
+                <span class="badge bg-cyan bg-opacity-15 text-cyan fw-bold px-3 py-2 rounded-pill mb-3">
+                    ✨ Gestión Integral de Salud & Retribuciones
+                </span>
+                <h1 class="display-5 fw-bold text-white mb-3">
+                    Plataforma Inteligente para el Control de <span class="text-cyan">Guardias y Triage</span>
+                </h1>
+                <p class="text-secondary lead fs-6 mb-4">
+                    Administra la admisión de pacientes en tiempo real con sistema de Triage estandarizado y calcula automáticamente tus horas de trabajo, complementos de guardia y remuneración estimada.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#sec-espera" class="btn btn-cyan-fill btn-lg px-4 py-2.5 rounded-3 fw-bold">
+                        <i class="bi bi-hospital me-2"></i> Ir a Sala de Espera
+                    </a>
+                    <button type="button" class="btn btn-outline-light btn-lg px-4 py-2.5 rounded-3 fw-bold" onclick="activarTabCalculadora()">
+                        <i class="bi bi-calculator me-2"></i> Calcular Retribución
+                    </button>
+                </div>
+            </div>
+
+            <!-- CUADRO ESTADO DEL SERVICIO (24H) -->
+            <div class="col-12 col-lg-5">
+                <div class="card card-status p-4 rounded-4 shadow border-0">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-cyan fw-bold d-flex align-items-center gap-2">
+                            <i class="bi bi-activity"></i> Estado del Servicio (24h)
+                        </span>
+                        <span class="badge bg-success text-white px-2.5 py-1">Operativo</span>
+                    </div>
+                    <div class="row g-2 text-center mb-3">
+                        <div class="col-6">
+                            <div class="card-status-box p-3 rounded-3">
+                                <h2 class="fw-bold text-white m-0">14</h2>
+                                <small class="text-secondary fs-7">Atendidos Hoy</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card-status-box p-3 rounded-3">
+                                <h2 class="fw-bold text-cyan m-0">12 min</h2>
+                                <small class="text-secondary fs-7">Tiempo Medio</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center fs-7 text-secondary border-top border-secondary pt-3">
+                        <span><i class="bi bi-clock me-1"></i> Actualizado en vivo</span>
+                        <span class="text-cyan fw-semibold">Turno: Mañana/Tarde</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PESTAÑAS Y TABLA DE PACIENTES -->
+        <section id="sec-espera" class="card card-dark shadow border-0 rounded-4 overflow-hidden mb-5">
+            <div class="card-header bg-dark-inner p-3 border-0">
+                <ul class="nav nav-pills custom-pills" id="mainTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active fw-bold" id="btnTabEspera" data-bs-toggle="pill" data-bs-target="#tabEspera" type="button">
+                            <i class="bi bi-person-plus me-2"></i> Gestión de Turnos y Sala de Espera
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-bold" id="btnTabCalculadora" data-bs-toggle="pill" data-bs-target="#tabCalculadora" type="button">
+                            <i class="bi bi-currency-dollar me-2"></i> Cálculo y Cuadrante de Guardias
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-body p-4">
+                <div class="tab-content" id="mainTabsContent">
+                    
+                    <!-- TAB 1: SALA DE ESPERA -->
+                    <div class="tab-pane fade show active" id="tabEspera" role="tabpanel">
+                        <div class="row g-4">
+                            <!-- Formulario de Admisión -->
+                            <div class="col-12 col-lg-4 border-end-lg border-secondary pe-lg-4">
+                                <h2 class="h6 fw-bold text-white mb-3"><i class="bi bi-person-badge me-2 text-cyan"></i> Admisión y Triage de Paciente</h2>
+                                <form id="formAdmision">
+                                    <div class="mb-3">
+                                        <label for="dni" class="form-label text-secondary small fw-semibold">DNI / Documento Identidad:</label>
+                                        <input type="text" class="form-control bg-dark-input text-light border-secondary" id="dni" placeholder="Ej: 38123456" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label text-secondary small fw-semibold">Nombre Completo:</label>
+                                        <input type="text" class="form-control bg-dark-input text-light border-secondary" id="nombre" placeholder="Nombre y Apellido" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="triage" class="form-label text-secondary small fw-semibold">Nivel de Urgencia (Triage):</label>
+                                        <select class="form-select bg-dark-input text-light border-secondary" id="triage" required>
+                                            <option value="Rojo">🔴 Rojo - Emergencia Reanimación</option>
+                                            <option value="Amarillo" selected>🟡 Amarillo - Urgencia Intermedia</option>
+                                            <option value="Verde">🟢 Verde - Consulta Leve</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="motivo" class="form-label text-secondary small fw-semibold">Motivo de Consulta / Síntomas:</label>
+                                        <textarea class="form-control bg-dark-input text-light border-secondary" id="motivo" rows="3" placeholder="Sintomatología descrita en la llegada..." required></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-registrar-emerald w-100 py-2.5">
+                                        <i class="bi bi-plus-circle me-1"></i> REGISTRAR EN SALA DE ESPERA
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Tabla Pacientes -->
+                            <div class="col-12 col-lg-8 ps-lg-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <h2 class="h6 fw-bold text-white mb-0"><i class="bi bi-list-task me-2 text-cyan"></i> Listado Activo de Pacientes</h2>
+                                        <small class="text-secondary fs-7">Gestión de estados y llamadas en tiempo real</small>
+                                    </div>
+                                    <span class="badge bg-dark border border-secondary px-3 py-2 text-light" id="contadorPacientes">3 Pacientes Activos</span>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-dark align-middle mb-0">
+                                        <thead class="table-dark-header fs-7 text-uppercase text-secondary">
+                                            <tr>
+                                                <th>Hora</th>
+                                                <th>Paciente</th>
+                                                <th>Triage</th>
+                                                <th>Estado</th>
+                                                <th class="text-end">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablaPacientesBody">
+                                            <!-- JavaScript renderizará las filas aquí -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: CALCULADORA -->
+                    <div class="tab-pane fade" id="tabCalculadora" role="tabpanel">
+                        <div class="row g-4" id="sec-calculadora">
+                            <div class="col-12 col-lg-5">
+                                <h2 class="h6 fw-bold text-white mb-3"><i class="bi bi-sliders me-2 text-cyan"></i> Parámetros de Guardia</h2>
+                                <form id="formCalculadora">
+                                    <div class="mb-3">
+                                        <label for="perfilProfesional" class="form-label text-secondary small fw-semibold">Perfil Profesional:</label>
+                                        <select class="form-select bg-dark-input text-light border-secondary" id="perfilProfesional">
+                                            <option value="Facultativo" selected>Facultativo / Especialista</option>
+                                            <option value="MIR">Médico Residente (MIR)</option>
+                                            <option value="Enfermeria">Enfermería / Técnico</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cantGuardias" class="form-label text-secondary small fw-semibold">Cantidad de Guardias en el Mes: <strong id="numGuardiasVal" class="text-cyan">4</strong></label>
+                                        <input type="range" class="form-range" id="cantGuardias" min="1" max="10" value="4">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tipoGuardia" class="form-label text-secondary small fw-semibold">Duración de Guardia:</label>
+                                        <select class="form-select bg-dark-input text-light border-secondary" id="tipoGuardia">
+                                            <option value="24h">Guardia Completa (24 Horas)</option>
+                                            <option value="12h">Media Guardia (12 Horas)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="precioHora" class="form-label text-secondary small fw-semibold">Precio Hora Sugerido ($ / €):</label>
+                                        <input type="number" class="form-control bg-dark-input text-light border-secondary" id="precioHora" value="28.50" step="0.50">
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-12 col-lg-7 d-flex flex-column justify-content-center border-start-lg border-secondary ps-lg-4">
+                                <div class="bg-dark-inner p-4 rounded-4 mb-3 border border-secondary">
+                                    <h3 class="h6 fw-bold text-secondary mb-3">Resumen Estimativo de Nómina</h3>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Horas Extras Totales:</span>
+                                        <strong id="calcHorasTotales">96 hrs</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Complemento por Guardias:</span>
+                                        <strong id="calcComplemento" class="text-cyan">$2,736.00</strong>
+                                    </div>
+                                    <hr class="border-secondary">
+                                    <div class="d-flex justify-content-between fs-5 fw-bold text-light">
+                                        <span>Total Bruto Estimado:</span>
+                                        <span id="calcTotalBruto" class="text-success">$5,236.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN MÉDICOS DE GUARDIA ACTIVA -->
+        <section id="sec-medicos" class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h2 class="h5 fw-bold text-white mb-0"><i class="bi bi-person-badge me-2 text-cyan"></i> Médicos y Equipo de Guardia Activa</h2>
+                    <small class="text-secondary">Estado de presencia y sustituciones en tiempo real</small>
+                </div>
+                <button type="button" class="btn btn-outline-light btn-sm rounded-pill fw-bold px-3" onclick="agregarNuevoMedico()">
+                    <i class="bi bi-person-plus-fill me-1"></i> Añadir Profesional
+                </button>
+            </div>
+
+            <div class="row g-3" id="contenedorMedicos">
+                <!-- Se dibuja desde JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL DE ACCESO PERSONAL -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-black text-light border border-secondary shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header border-0 bg-dark-inner">
+                    <h5 class="modal-title fw-bold text-cyan"><i class="bi bi-shield-lock me-2"></i>Acceso al Portal Sanitario</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="formLogin">
+                        <div class="mb-3">
+                            <label for="loginUser" class="form-label small fw-semibold text-secondary">Usuario / Matrícula</label>
+                            <input type="text" class="form-control bg-dark-input text-light border-secondary" id="loginUser" placeholder="admin" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPass" class="form-label small fw-semibold text-secondary">Contraseña</label>
+                            <input type="password" class="form-control bg-dark-input text-light border-secondary" id="loginPass" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn btn-cyan-fill w-100 fw-bold py-2">Iniciar Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-top border-secondary text-secondary py-3 mt-auto text-center">
+        <div class="container">
+            <p class="mb-0 small">&copy; 2026 GuardiasApp | Sistema Hospitalario - Desarrollo Frontend UTN</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS & Script de Lógica -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
