@@ -1,12 +1,3 @@
-/**
- * GUARDIASAPP
- * Sistema de roles:
- *
- * administrador
- * recepcionista
- * medico
- */
-
 
 // ======================================================
 // USUARIOS DE PRUEBA
